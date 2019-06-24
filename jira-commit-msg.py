@@ -4,9 +4,10 @@ import sys
 import re
 import subprocess
 
-
-MESSAGE_REGEX = '^DDC-[\d]{4}\. [\w\d .,:;+]*\.$'
-BRANCHNAME_REGEX = '/(DDC-[\d]{4})-' #should contain a capturing group
+MESSAGE_REGEX = '^[A-Z][A-Z][A-Z]-[0-9]* [\w\d .,:;+]*$'
+BRANCHNAME_REGEX = '/([A-Z][A-Z][A-Z]-[0-9]*)-'
+#MESSAGE_REGEX = '^DDC-[\d]{4}\. [\w\d .,:;+]*\.$'
+#BRANCHNAME_REGEX = '/(DDC-[\d]{4})-' #should contain a capturing group
 
 
 def current_branch_name():
@@ -30,7 +31,7 @@ def get_jira_issue_hint(branch_name):
   match = re.findall(BRANCHNAME_REGEX, branch_name)
   if match and match[0]:
     return match[0]
-  return 'DDC-XXXX'
+  return 'ABC-XXXX'
 
 
 def valid_commit_message(message):
